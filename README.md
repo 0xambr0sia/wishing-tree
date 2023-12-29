@@ -36,10 +36,9 @@ Inspired by the idea of a collective wishing tree in Japan as well as Yoko Ono's
 
 This Solidity smart contract is named "wishingtree" and is designed to facilitate a decentralized wishing tree. Here's a description of the code:
 
-### Overview
+## Contract Description
 The contract is written in Solidity version 0.8.0 and includes OpenZeppelin and ManifoldXYZ libraries. It implements the Ownable contract, allowing the contract owner to have special privileges.
 
-### Contract Description
 1. **Purpose**: The contract allows users to make wishes by invoking the `makeWish` function, which captures and stores their desires.
 
 2. **Extension of Creator Core and TokenURI Interface**: This contract extends the `ICreatorExtensionTokenURI` interface from the ManifoldXYZ library. It also implements the `IERC165` interface.
@@ -72,7 +71,7 @@ The `tokenURI` function is designed to return a base URI. In a complete implemen
 ### Note
 Ensure that the required dependencies (OpenZeppelin and ManifoldXYZ) are properly installed when deploying this contract. Additionally, a complete implementation should include proper error handling and additional security considerations.
 
-# License
+## License
 This project is licensed under the [MIT License](https://chat.openai.com/c/LICENSE.md) - see the [LICENSE.md](https://chat.openai.com/c/LICENSE.md) file for details.
 
 This project was created by ambr0sia. Feel free to connect with me on X at twitter.com/ambr0sia_xyz.
