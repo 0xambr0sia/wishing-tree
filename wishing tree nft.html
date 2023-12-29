@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wishing tree</title>
+  <style>
+    html, body {
+      font-family: 'Times New Roman', serif; 
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .text {
+      font-weight: 100;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: none;
+      background: transparent;
+      max-width: 50%;
+    }
+
+    #background-image {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 800px;
+        object-fit: contain;
+        z-index: -1;
+        opacity: 1;
+        animation: fadeIn 3s forwards;
+    }
+    
+    .small-text {
+      font-size: 18px;
+    }
+
+    .sparkle {
+      animation: colorChange 5s infinite;
+    }
+
+    @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+    @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+   @keyframes colorChange {
+      0%, 100% {
+        color: #600000;
+      }
+
+      10% {
+        color: #ee7000;
+      }
+
+      20% {
+        color: #323d00;
+      }
+
+      30% {
+        color: #9d9a23;
+      }
+
+      40% {
+        color: #808d75;
+      }
+
+      50% {
+        color: #84a0cf;
+      }
+
+      60% {
+        color: #304a78;
+      }
+
+      70% {
+        color: #cda4c3;
+      }
+
+      80% {
+        color: #d75375;
+      }
+
+      90% {
+        color: #6e7b9a;
+      }
+    }
+  </style>
+</head>
+
+<body onclick="toggleContent()">
+  <img id="background-image" src="https://arweave.net/Kglwk3fzw_T3hpJiDo7fX8mNa3G_ENI03477TPL0wQM" alt=" ">
+  <div class="text"></div>
+  <div class="text small-text"></div>
+  <script>
+
+    let isImage = true;
+
+    function toggleContent() {
+        const bgImage = document.getElementById('background-image')
+        bgImage.style.animation = isImage ? 'fadeOut 3s forwards' : 'fadeIn 3s forwards';
+
+        const textEls = document.getElementsByClassName('text');
+        for (let i = 0; i < textEls.length; i++) {
+            textEls[i].style.display = isImage ? 'block' : 'none';
+            textEls[i].style.animation = isImage ? 'fadeIn 3s forwards' : 'fadeOut 3s forwards';
+        }
+        isImage = !isImage;
+    }
+
+        class TextScramble {
+      constructor(el) {
+        this.el = el;
+        this.chars = '✩₊˚.⋆｡ﾟ ﾟ☾ ﾟ｡⋆ ˚｡⋆';
+        this.update = this.update.bind(this);
+      }
+
+      setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          const start = Math.floor(Math.random() * 40);
+          const end = start + Math.floor(Math.random() * 40);
+          this.queue.push({ from, to, start, end });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+
+      update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+          if (this.frame >= end) {
+            complete++;
+            output += to;
+          } else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) {
+              char = this.randomChar();
+              this.queue[i].char = char;
+            }
+            output += `<span class="sparkle">${char}</span>`;
+          } else {
+            output += from;
+          }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) {
+          this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(this.update);
+          this.frame++;
+        }
+      }
+
+      randomChar() {
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+      }
+    }
+
+    function getRandomPhrase() {
+      const remainingText = [
+        'the wishing tree grows to encapsulate the soul of crypto culture.  may it shine with our compassion, thirst for progress, and belief in collective hope. sovereignty unites us, fostering a brighter future.',
+         'for love to speak first. i wish for peace to come over us all its tender refrain soothing our souls. i wish for beauty to direct our gaze and show us what can be instead of what is. i wish for god to hold us in his heart.',
+         'with certainty abandoned forgiveness ordained, we apologize to ourselves, say fuck it, and eat a hotpocket.',
+         'yea. i mean. i love making art. and its all i want to do. and my ideas are my everything.',
+         'to surrender t0 a game',
+        'for our love to continue growing in the years to come',
+          'for forever with you',
+         'for health and happiness to raphael for all his life, and strength when there isnt',
+         'for moon',
+        'to live a life of creation and love',
+        'for everyone to have the courage to walk through the inevitable obstacles of life that mold them into their best selves',
+         'for humanity recognize the beauty in its diversity, embracing differences in race, culture, religion, and thought. let the myriad colors, languages, and traditions become bridges, not barriers, uniting us in mutual respect and understanding, and propelling',
+        'for a life where time, space, and patience are abundant, enabling a creative journey alongside inspiring minds, all for the collective betterment.',
+         'upon this wishing tree i stand with open heart and outstretched hand for every soul thats near to me, i wish them joy, as vast as sea. may laughter ring, and spirits soar, may happiness be evermore. with every leaf that flutters free. may love surround',
+         'i can be with you again',
+          'to be my own & contribute. a navigation of twin visual void, some sort of power to express. for people to have the power to celebrate themselves.',
+         'for piece of mind, total self confidence, and absolute, unrelenting inner love for the person i love the most.',
+          'for peace for everyone in the world',
+         'for love, health, happiness, prosperity, freedom, serenity, longevity',
+        'that we draw wisdom from the pioneers, empower decentralisation, and embrace the boundless opportunities of an evolving pixelated future',
+         '祝所有人身体健康, 心想事成, 万事如意!',
+          'that our future be defined by decentralized harmony, where ai advances unite humanity in peace. a world of shared power, knowledge, and compassion, where technology serves as a beacon of progress, not division.',
+         'Γνῶθι σεαυτόν',
+         'that the peace be with us all',
+         'love, laughter, and long life for my treasured souls',
+          'that the duality of my personhood can one day be brought together as one',
+         'you frens lifetime of health, happiness, harmony, pleasure, and success',
+         ' !',
+        'for people to lead with love towards themselves and others no matter how many times they stumble or how much adversity they face'
+
+      ];
+      const remainingIndex = Math.floor(Math.random() * remainingText.length);
+      const remainingPhrase = remainingText.splice(remainingIndex, 1)[0];
+      return 'i wish ' + remainingPhrase.toLowerCase();
+    }
+
+    const phraseNumberMap = {
+      'i wish the wishing tree grows to encapsulate the soul of crypto culture.  may it shine with our compassion, thirst for progress, and belief in collective hope. sovereignty unites us, fostering a brighter future.': 'ambr0sia.eth',
+       'i wish for love to speak first. i wish for peace to come over us all its tender refrain soothing our souls. i wish for beauty to direct our gaze and show us what can be instead of what is. i wish for god to hold us in his heart.': 'boredyachtapeclub.eth',
+       'i wish with certainty abandoned forgiveness ordained, we apologize to ourselves, say fuck it, and eat a hotpocket.': 'swallja.eth',
+       'i wish yea. i mean. i love making art. and its all i want to do. and my ideas are my everything.': 'swallja.eth',
+       'i wish to surrender t0 a game': 'swallja.eth',
+      'i wish for our love to continue growing in the years to come':'yungwknd.eth',
+        'i wish for forever with you': 'incarterseyes.eth',
+       'i wish for health and happiness to raphael for all his life, and strength when there isnt': 'ricky-ricer.eth',
+       'i wish for moon': '0x15ca4156c02b0A8641011B44E6639A2bDe50d015',
+      'i wish to live a life of creation and love':'skaar.eth',
+      'i wish for everyone to have the courage to walk through the inevitable obstacles of life that mold them into their best selves': 'boona.eth',
+       'i wish for humanity recognize the beauty in its diversity, embracing differences in race, culture, religion, and thought. let the myriad colors, languages, and traditions become bridges, not barriers, uniting us in mutual respect and understanding, and propelling': 'ol1y.eth',
+      'i wish for a life where time, space, and patience are abundant, enabling a creative journey alongside inspiring minds, all for the collective betterment.': 'evbuilds.eth',
+       'i wish upon this wishing tree i stand with open heart and outstretched hand for every soul thats near to me, i wish them joy, as vast as sea. may laughter ring, and spirits soar, may happiness be evermore. with every leaf that flutters free. may love surround': 'icemans.eth',
+       'i wish i can be with you again': 'purpleglitch.eth',
+        'i wish to be my own & contribute. a navigation of twin visual void, some sort of power to express. for people to have the power to celebrate themselves.': 'kvlt.eth',
+       'i wish for piece of mind, total self confidence, and absolute, unrelenting inner love for the person i love the most.': 'trailmix.eth',
+        'i wish for peace for everyone in the world': 'cryptosquilliam.eth', 
+       'i wish for love, health, happiness, prosperity, freedom, serenity, longevity': 'zharjac.eth', 
+      'i wish that we draw wisdom from the pioneers, empower decentralisation, and embrace the boundless opportunities of an evolving pixelated future': 'timewave0.eth', 
+       'i wish 祝所有人身体健康, 心想事成, 万事如意!': 'gmmoney.eth',
+        'i wish that our future be defined by decentralized harmony, where ai advances unite humanity in peace. a world of shared power, knowledge, and compassion, where technology serves as a beacon of progress, not division.': '0x58c5B881fb2794D04F0dC0eC65F94a119CD43AA0',
+       'i wish Γνῶθι σεαυτόν': 'lordbog.eth',
+       'i wish that the peace be with us all': 'apocs.eth',
+       'i wish love, laughter, and long life for my treasured souls': '0x24E91a199B5c429eE61efc37891630888fBb98A9',
+        'i wish that the duality of my personhood can one day be brought together as one': 'kaesha.eth',
+       'i wish you frens a lifetime of health, happiness, harmony, pleasure, and success': '0xe915c8762Ed93fB8Dfa536C70917EA596a2EB7c7',
+       'i wish !': 'chromevoid.eth',
+      'i wish for people to lead with love towards themselves and others no matter how many times they stumble or how much adversity they face': 'triumph36.eth'
+    };
+
+    function getRandomTransition() {
+      const transitions = [
+      '‧₊˚',
+    '˖ ࣪⭑',
+    '₊ ⊹',
+    '‧⁺˚',
+    '✩｡⋆',
+    '･ﾟ･｡',
+    '⋆⁺｡',
+    '✩₊‧˙',
+    '𖤣',
+    '𓋼',
+    '⋆｡ﾟ☾',
+    '⋆*',
+    '˚✧'
+      ];
+      return transitions[Math.floor(Math.random() * transitions.length)];
+    }
+
+    function getRandomEdge() {
+      const edges = [
+      '‧₊˚',
+    '˖ ࣪⭑',
+    '₊ ⊹',
+    '‧͙⁺˚',
+    '✩°｡⋆',
+    '･ﾟ･｡',
+    '⋆⁺｡˚',
+    '✩₊‧˙',
+    '𓋼𓍊',
+    '⋆｡ﾟ☾',
+    '⋆*',
+    '˚✧'
+      ];
+      return edges[Math.floor(Math.random() * edges.length)];
+    }
+
+    function getRandomColor() {
+      const colors = ['#600000', '#ee7000', '#323d00', '#9d9a23', '#808d75', '#84a0cf', '#304a78', '#cda4c3', '#d75375', '#6e7b9a'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    const el = document.querySelectorAll('.text')[0];
+    const fx = new TextScramble(el);
+
+    const numberEl = document.querySelectorAll('.text')[1];
+    const numberFx = new TextScramble(numberEl);
+
+    function sparkleNumber(number) {
+      const transition = getRandomTransition();
+      const edge = getRandomEdge();
+      return ` ${transition}${number}${edge} `;
+    }
+
+    function next() {
+      const phrase = getRandomPhrase();
+      const transition = getRandomTransition();
+      const edge = getRandomEdge();
+      const sparkle = ` ${transition} ${phrase} ${edge} `;
+      const number = phraseNumberMap[phrase];
+
+      el.style.color = getRandomColor();
+      numberEl.style.color = getRandomColor();
+
+      fx.setText(sparkle).then(() => {
+        if (remainingText.length > 0) {
+          setTimeout(next, 800);
+        }
+      });
+
+      numberFx.setText(sparkleNumber(number));
+    }
+
+    setInterval(next, 7000);
+    next();
+  </script>
+</body>
+
+</html>
