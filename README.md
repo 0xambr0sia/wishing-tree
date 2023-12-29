@@ -1,3 +1,39 @@
+# Wishing Tree
+![image](https://github.com/0xambr0sia/wishing-tree/assets/147129231/ef25ac50-3ce6-4213-86f0-799c716afbac)
+
+An interactive web experience that combines visual art, poetic messages, and dynamic animations to create a virtual "wishing tree." Users can click on the tree to reveal heartfelt wishes expressed in a visually captivating manner.
+
+## Features
+**Dynamic Animation:** The background image and wishes fade in and out gracefully with smooth animations.
+
+**Text Scramble Effect:** Wishes are presented using a captivating text scramble effect, adding a touch of whimsy.
+
+**Colorful Sparkle:** Each wish is adorned with a colorful sparkle, creating a visually engaging display.
+
+**Randomized Transitions:** Transition phrases and edges are randomly selected for a diverse and unique user experience.
+
+**Multilingual Support:** Wishes are available in multiple languages, reflecting the global nature of the community.
+
+**Contributions:** Each wish is associated with a unique identifier, making it a collaborative and evolving art project.
+
+## How to Use
+
+Click anywhere on the page to toggle between the visual representation of the wishing tree and the poetic wishes. The background image fades out while the wishes fade in, accompanied by the mesmerizing text scramble effect and colorful sparkles.
+
+## Contributors and Wishes
+
+**ambr0sia.eth:** The wishing tree grows to encapsulate the soul of crypto culture. May it shine with our compassion, thirst for progress, and belief in collective hope.
+
+**boredyachtapeclub.eth:** For love to speak first. I wish for peace to come over us all, soothing our souls.
+
+**swallja.eth:** Certainty abandoned, forgiveness ordained. Apologies to ourselves, saying, "F**k it," and eating a hotpocket.
+
+... and many more heartfelt wishes from the community!
+
+## Inspiration
+Inspired by the idea of a collective wishing tree in Japan as well as Yoko Ono's site specific wishing trees from the 1960s, this project aims to interrogate the notion of websites as new spaces for gathering, as well as to bring together diverse thoughts, hopes, and dreams into a visually stunning and interactive digital art piece.
+
+
 This Solidity smart contract is named "wishingtree" and is designed to facilitate a decentralized wishing tree. Here's a description of the code:
 
 ### Overview
@@ -35,3 +71,8 @@ The `tokenURI` function is designed to return a base URI. In a complete implemen
 
 ### Note
 Ensure that the required dependencies (OpenZeppelin and ManifoldXYZ) are properly installed when deploying this contract. Additionally, a complete implementation should include proper error handling and additional security considerations.
+
+# License
+This project is licensed under the [MIT License](https://chat.openai.com/c/LICENSE.md) - see the [LICENSE.md](https://chat.openai.com/c/LICENSE.md) file for details.
+
+This project was created by ambr0sia. Feel free to connect with me on X at twitter.com/ambr0sia_xyz.
